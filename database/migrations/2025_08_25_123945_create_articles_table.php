@@ -9,20 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-{
-    Schema::create('notes', function (Blueprint $table) {
+    public function up()
+    {
+    Schema::create('articles', function (Blueprint $table) {
         $table->id();
         $table->string('title');
-        // Do you have this line?
-        $table->text('content'); // <-- this must exist
+        $table->text('content');
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->timestamps();
     });
 }
-
-
-
 
 
     /**
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('articles');
     }
 };

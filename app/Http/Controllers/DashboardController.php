@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Get all notes (or only the authenticated user's notes if you have a user_id column)
-        $notes = Note::latest()->get();
+        $users = User::all();
+        $roles = Role::all();
+        $permissions = Permission::all();
 
-        return view('dashboard', compact('notes'));
+        return view('dashboard', compact('users', 'roles', 'permissions'));
     }
 }
